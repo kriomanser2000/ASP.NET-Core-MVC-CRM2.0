@@ -1,0 +1,148 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password CRM System</title>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
+</head>
+<style>
+*
+{
+    font-family: Nunito; 
+}
+body
+{
+    font-family: Nunito;
+    background-image: url('/images/BGpurpleATLAS.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.loginWin
+{
+    background: white;
+    border-radius: 4px;
+    color: black;
+    position: absolute;
+    width: 600px;
+    height: 500px;
+    right: 35%;
+    top: 20%;
+}
+button
+{
+    width: 50%;
+    height: 40px;
+    border-radius: 40px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(224, 224, 224);
+    outline: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    bottom: 60px;
+    left: 25%;
+    position: absolute;
+    transition: all 0.4s ease;
+}
+button:hover
+{
+    background-color: rgb(240, 240, 240);
+}
+.register
+{
+    bottom: 80px;
+    left: 47.6%;
+    position: absolute;
+    font-size: 0.9rem;
+    color: black;
+    text-align: center;
+    margin: 25px 0 10px;
+}
+.register p a
+{
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+}
+.register p a:hover 
+{
+    text-decoration: underline;
+}
+.PpP
+{
+    font-size: 22px;
+    margin-left: 65px;
+}
+.inputbox input
+{
+    width: 100%;
+    height: 40px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    padding: 0 35px 0 5px;
+    color: black;
+}
+.inputbox 
+{
+    position: relative;
+    margin-left: 65px;         
+    margin-top: 35px;      
+    max-width: 350px;    
+    border-bottom: 2px solid rgba(63, 63, 71, 1);
+}
+.inputbox label 
+{
+    position: absolute;      
+    top: 50%;
+    left: 5px;      
+    transform: translateY(-50%);       
+    color: rgba(63, 63, 71, 1);           
+    font-size: 1rem;           
+    pointer-events: none;           
+    transition: all 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+.inputbox input:focus ~ label, .inputbox input:not(:placeholder-shown) ~ label 
+{        
+    opacity: 0;
+    visibility: hidden;  
+}
+.inputbox input 
+{          
+    width: 100%;           
+    border: none;           
+    outline: none;        
+    padding: 10px 5px;       
+    font-size: 1rem;   
+}   
+.inputbox input::placeholder 
+{          
+    color: transparent;      
+}
+</style>
+<body>
+    <div class="loginWin">
+        <h3 style="font-size: 24px; justify-content: center; text-align: center; margin-top: 50px;">Забули вхідні дані?</h3>
+        <div class="PpP">
+            <p>Натисніть кнопку, для того щоб надіслати <br> повідомлення про проблему, та очікуйте <br> відповідь на пошту.</p>
+        </div>
+        <div class="inputbox">
+            <input type="email" placeholder=" " id="input" required>
+            <label for="input">Email</label>  
+        </div>
+        <button>Report a Problem</button>
+        <div class="register">
+            <p><a href="@Url.Action("Index", "Home")">Вхід</a></p>
+        </div>
+    </div>
+</body>
+</html>
