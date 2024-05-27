@@ -34,6 +34,10 @@ namespace Customer_Relationship_Management_1._0.Controllers
         {
             return View();
         }
+        public IActionResult UserMainPage()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

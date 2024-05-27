@@ -4,13 +4,13 @@
 @{
 }
 
-<!-- Page For Admin -->
+<!-- Page For User -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Main-Page | CRM System</title>
+    <title>User Main-Page | CRM System</title>
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
 </head>
 <style>
@@ -57,6 +57,12 @@ body
 {
     background-color: #a7a7a7;
 }
+.dashboardBtn
+{
+    background-image: url(./dashboards.png);
+    background-size: cover;
+    width: 10px;
+}
 .modal 
 {
     display: none;
@@ -93,10 +99,9 @@ body
     <!-- SIDEBAR -->
     <div class="sidebar">
         <button class="dashboardBtn">DASHBOARD</button>
-        <button class="teamsBtn">TEAMS</button>
-        <button class="employeesBtn">EMPLOYEES</button>
-        <button class="usersBtn">USERS</button>
-        <button class="requestsBtn">REQUESTS</button>
+        <button class="leadsBtn">LEADS</button>
+        <button class="customersBtn">CUSTOMERS</button>
+        <button class="teamBtn">TEAM</button>
         <button class="profileBtn">PROFILE</button>
         <button class="logoutBtn">LOGOUT</button>
     </div>

@@ -2,6 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 
+<!-- Log In Page -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -203,7 +204,7 @@ button:hover
         </div>
         <button id="loginButton">Start</button>
         <div class="register">
-            <p>У мене немає облікового запису <a href="@Url.Action("RegistrPage", "Home")">Реєстрація TEST</a></p>
+            <p>У мене немає облікового запису <a href="@Url.Action("RegistrPage", "Home")">Реєстрація</a></p>
         </div>
     </div>
     <div id="customAlert" class="modal">
@@ -215,12 +216,17 @@ button:hover
     <script>
         document.getElementById('loginButton').addEventListener('click', function()
         {
+            //test login for ADMIN
             var email = document.getElementById('email').value;
             var password = document.getElementById('password').value;
             if (email === 'admin@gmail.com' && password === 'admin123') 
             {
                 window.location.href = '/home/MainPage';
             } 
+            else if (email === 'user@gmail.com' && password === 'user123') 
+            { 
+                window.location.href = '/home/UserMainPage';
+            }
             else 
             {
                 showCustomAlert();

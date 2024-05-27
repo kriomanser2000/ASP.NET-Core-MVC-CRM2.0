@@ -4,12 +4,13 @@
 @{
 }
 
+<!-- Sign In Page -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration CRM System</title>
+    <title>Registration | CRM System</title>
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
 </head>
 <style>
@@ -32,9 +33,9 @@ body
     color: black;
     position: absolute;
     width: 600px;
-    height: 500px;
+    height: 710px;
     right: 35%;
-    top: 20%;
+    top: 10%;
 }
 .inputbox input
 {
@@ -128,16 +129,24 @@ button:hover
     <div class="loginWin">
         <h3 style="font-size: 24px; justify-content: center; text-align: center; margin-top: 50px;">Реєстрація</h3>
         <div class="inputbox">
+            <input type="text" placeholder=" " id="input" required>
+            <label for="input">Full Name</label>
+        </div>
+        <div class="inputbox">
+            <input type="text" placeholder=" " id="input" required>
+            <label for="input">Country</label>
+        </div>
+        <div class="inputbox">
+            <input type="text" placeholder=" " id="input" required>
+            <label for="input">Phone Number</label>
+        </div>
+        <div class="inputbox">
             <input type="email" placeholder=" " id="input" required>
             <label for="input">Email</label>  
         </div>
         <div class="inputbox">
             <input type="password" placeholder=" " id="input" required>
             <label for="input">Password</label>  
-        </div>
-        <div class="inputbox">
-            <input type="password" placeholder=" " id="input" required>
-            <label for="input">Confirm Password</label>  
         </div>
         <button>Start</button>
         <div class="register">
