@@ -109,6 +109,17 @@ body
         </div>
     </div>
     <script>
+        //for users btn
+        document.querySelector('.usersBtn').addEventListener('click', function () 
+        {
+            fetch('@Url.Action("Index", "Users")')
+                .then(response => response.text())
+                .then(html => 
+                {
+                    document.getElementById('usersContainer').innerHTML = html;
+                });
+        });
+        //for logout btn
         document.querySelector('.logoutBtn').addEventListener('click', function() 
         {
             document.getElementById('logoutModal').style.display = 'flex';
