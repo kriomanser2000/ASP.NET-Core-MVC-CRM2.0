@@ -20,23 +20,23 @@ namespace Customer_Relationship_Management_1._0.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var user = new User
-                {
-                    FirstName = model.FirstName,
-                    Country = model.Country,
-                    PhoneNumber = model.PhoneNumber,
-                    Email = model.Email,
-                    Password = model.Password,
-                    IsApproved = false,
-                    Role = "User"
-                };
-                _context.Users.Add(user);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Home");
+                return View("~/Views/Home/RegistrPage.cshtml", model);
             }
-            return View(model);
+            var user = new User
+            {
+                FirstName = model.FirstName,
+                Country = model.Country,
+                PhoneNumber = model.PhoneNumber,
+                Email = model.Email,
+                Password = model.Password,
+                IsApproved = false,
+                Role = "User"
+            };
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

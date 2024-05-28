@@ -4,6 +4,7 @@
 @{
 }
 
+@model Customer_Relationship_Management_1._0.Models.RegisterViewModel
 <!-- Sign In Page -->
 <!DOCTYPE html>
 <html lang="en">
@@ -126,32 +127,34 @@ button:hover
 }
 </style>
 <body>
+<form asp-controller="Account" asp-action="Register" method="post">
     <div class="loginWin">
         <h3 style="font-size: 24px; justify-content: center; text-align: center; margin-top: 50px;">Реєстрація</h3>
         <div class="inputbox">
-            <input type="text" placeholder=" " id="input" required>
-            <label for="input">Full Name</label>
+            <input asp-for="FirstName" type="text" placeholder=" " required>
+            <label asp-for="FirstName">Full Name</label>
         </div>
         <div class="inputbox">
-            <input type="text" placeholder=" " id="input" required>
-            <label for="input">Country</label>
+            <input asp-for="Country" type="text" placeholder=" " required>
+            <label asp-for="Country">Country</label>
         </div>
         <div class="inputbox">
-            <input type="text" placeholder=" " id="input" required>
-            <label for="input">Phone Number</label>
+            <input asp-for="PhoneNumber" type="text" placeholder=" " required>
+            <label asp-for="PhoneNumber">Phone Number</label>
         </div>
         <div class="inputbox">
-            <input type="email" placeholder=" " id="input" required>
-            <label for="input">Email</label>  
+            <input asp-for="Email" type="email" placeholder=" " required>
+            <label asp-for="Email">Email</label>
         </div>
         <div class="inputbox">
-            <input type="password" placeholder=" " id="input" required>
-            <label for="input">Password</label>  
+            <input asp-for="Password" type="password" placeholder=" " required>
+            <label asp-for="Password">Password</label>
         </div>
-        <button>Start</button>
-        <div class="register">
-            <p>Я вже маю акаунт <a href="@Url.Action("Index", "Home")">Вхід</a></p>
-        </div>
+        <button type="submit">Register</button>
     </div>
+    <div class="register">
+        <p>Я вже маю акаунт <a asp-controller="Home" asp-action="Index">Вхід</a></p>
+    </div>
+</form>
 </body>
 </html>
