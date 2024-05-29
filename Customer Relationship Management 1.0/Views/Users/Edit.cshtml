@@ -6,33 +6,55 @@
 @{
     ViewData["Title"] = "Edit User";
 }
-<h2>@ViewData["Title"]</h2>
-<form asp-action="Edit">
-    <input type="hidden" asp-for="UserId" />
-    <div>
-        <label asp-for="FirstName"></label>
-        <input asp-for="FirstName" />
-    </div>
-    <div>
-        <label asp-for="Country"></label>
-        <input asp-for="Country" />
-    </div>
-    <div>
-        <label asp-for="PhoneNumber"></label>
-        <input asp-for="PhoneNumber" />
-    </div>
-    <div>
-        <label asp-for="Email"></label>
-        <input asp-for="Email" />
-    </div>
-    <div>
-        <label asp-for="IsApproved"></label>
-        <input asp-for="IsApproved" />
-    </div>
-    <div>
-        <label asp-for="Role"></label>
-        <input asp-for="Role" />
-    </div>
-    <button type="submit">Save</button>
-</form>
-<a asp-action="Index">Back to List</a>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
+    <!-- <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> -->
+</head>
+<style>
+* 
+{
+    font-family: Nunito;
+}
+body 
+{
+    font-family: Nunito;
+}
+</style>
+<body>
+    <h2>@ViewData["Title"]</h2>
+    <form asp-action="Edit">
+        <input type="hidden" asp-for="UserId" />
+        <div>
+            <label asp-for="FirstName"></label>
+            <input asp-for="FirstName" />
+        </div>
+        <div>
+            <label asp-for="Country"></label>
+            <input asp-for="Country" />
+        </div>
+        <div>
+            <label asp-for="PhoneNumber"></label>
+            <input asp-for="PhoneNumber" />
+        </div>
+        <div>
+            <label asp-for="Email"></label>
+            <input asp-for="Email" />
+        </div>
+        <div>
+            <label asp-for="IsApproved"></label>
+            <input asp-for="IsApproved" />
+        </div>
+        <div>
+            <label asp-for="Role"></label>
+            <input asp-for="Role" />
+        </div>
+        <button type="submit">Save</button>
+    </form>
+    <a asp-action="Index">На Головну</a>
+</body>
+</html>

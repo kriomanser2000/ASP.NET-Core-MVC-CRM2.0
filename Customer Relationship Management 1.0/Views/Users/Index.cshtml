@@ -111,7 +111,7 @@ body
         {
             //idk
         }
-        /*function openEditModal(userId, firstName, country, phone, email, isApproved, role) 
+        function openEditModal(userId, firstName, country, phone, email, isApproved, role) 
         {
             const modal = document.getElementById('editUserModal');
             modal.style.display = 'block';
@@ -135,7 +135,6 @@ body
             document.getElementById('editIsApprovedInput').checked = false;
             document.getElementById('editRoleInput').value = '';
         }
-        */
         function editUser(userId, firstName, country, phone, email, isApproved, role) 
         {
             window.location.href = `/Users/Edit/${userId}?firstName=${firstName}&country=${country}&phone=${phone}&email=${email}&isApproved=${isApproved}&role=${role}`;
