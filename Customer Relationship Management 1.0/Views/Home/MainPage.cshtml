@@ -103,12 +103,11 @@ body
 <body>
     <!-- SIDEBAR -->
     <div class="sidebar">
-        <button class="dashboardBtn">DASHBOARD</button>
-        <button class="teamsBtn">TEAMS</button>
-        <button class="employeesBtn">EMPLOYEES</button>
-        <button onclick="showUsers()">USERS</button>
-        <button class="requestsBtn">REQUESTS</button>
-        <button class="profileBtn">PROFILE</button>
+        <button id="dashboardBtn" class="dashboardBtn">DASHBOARD</button>
+        <button id="teamsBtn" class="teamsBtn">TEAMS</button>
+        <button id="employeesBtn" class="employeesBtn">EMPLOYEES</button>
+        <button id="usersBtn" class="usersBtn">USERS</button>
+        <button id="profileBtn" class="profileBtn">PROFILE</button>
         <button class="logoutBtn">LOGOUT</button>
     </div>
     <div id="content" class="content"></div>
@@ -121,16 +120,11 @@ body
         </div>
     </div>
     <script>
-        //for sideBar btns dynamic
-        function showUsers() 
+        //for users btn 
+        document.getElementById('usersBtn').addEventListener('click', function () 
         {
-            fetch('@Url.Action("Index", "Users")')
-                .then(response => response.text())
-                .then(html => 
-                {
-                    document.getElementById('content').innerHTML = html;
-                });
-        }
+            window.location.href = '/Users/Index';
+        });
         //for logout btn
         document.querySelector('.logoutBtn').addEventListener('click', function () 
         {

@@ -1,4 +1,4 @@
-﻿@*
+﻿﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -51,14 +51,136 @@ body
     background: #B0B0B0;         
     border: 5px solid #B0B0B0;
 }
+.tableBtns1 button
+{
+    color: black;
+    background: #D8D8D8;
+    border: 5px solid #D8D8D8;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s, border 0.3s;
+    margin-right: 10px; 
+}
+.tableBtns1 button:hover
+{
+    background: #B0B0B0;         
+    border: 5px solid #B0B0B0;
+}
 .superTable th, .superTable td 
 {
     padding: 10px 20px;
     border: 1px solid #ddd;
     text-align: left;
 }
+.sidebar 
+{
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #e9e3e3;
+    padding-top: 20px;
+    text-align: center;
+    box-shadow: 10px 0px 20px rgba(0, 0, 0, 0.5);
+}
+.sidebar button 
+{
+    padding: 15px 15px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    height: 80px;
+    text-align: left;
+    border: none;
+    background: none;
+    cursor: pointer;
+    background: #e9e3e3;
+    border-bottom: 2px solid rgb(114, 114, 114);
+    border-radius: 7px;
+    transition: background-color 0.3s;
+}
+.sidebar button:hover 
+{
+    background-color: #a7a7a7;
+}
+.usersBtn
+{
+    background-color: #a7a7a7;
+}
+.modal 
+{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    justify-content: center;
+    align-items: center;
+}
+.modal-content 
+{
+    background-color: white;
+    margin: auto;
+    padding: 40px;
+    border-radius: 3px;
+    width: 400px;
+    text-align: center;
+    font-size: 20px;
+}
+.modal button
+{
+    background: #D8D8D8;
+    margin: 20px;
+    padding: 1px 15px;
+    font-size: 18px;
+    border: 1px solid #D8D8D8;
+    border-radius: 3px;
+    transition: background-color 0.3s, border 0.3s;
+    cursor: pointer;
+}
+.modal button:hover
+{        
+    background: #B0B0B0;         
+    border: 1px solid #B0B0B0;
+}
+.usersBtn:disabled 
+{
+    opacity: 0.5;
+    cursor: not-allowed; 
+    pointer-events: none;
+}
 </style>
 <body>
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <button class="dashboardBtn">DASHBOARD</button>
+        <button class="teamsBtn">TEAMS</button>
+        <button class="employeesBtn">EMPLOYEES</button>
+        <button class="usersBtn" disabled>USERS</button>
+        <button class="profileBtn">PROFILE</button>
+        <button class="logoutBtn">LOGOUT</button>
+    </div>
+    <div id="content" class="content"></div>
+    <!-- Log Out -->
+    <div id="logoutModal" class="modal">
+        <div class="modal-content">
+            <p>Ви впевнені що хочете вийти з Акаунту?</p>
+            <button id="confirmLogout">Так</button>
+            <button id="cancelLogout">Ні</button>
+        </div>
+    </div>
+    <!-- User Table -->
     <div class="superTable">
         <table id="userTable">
             <thead>
@@ -84,81 +206,36 @@ body
                         <td>@user.Role</td>
                         <td class="tableBtns1">
                             <a href="@Url.Action("Edit", "Users", new { id = user.UserId })">Edit</a> |
-                            <a href="@Url.Action("Delete", "Users", new { id = user.UserId })">Delete</a>
+                            <form asp-action="Delete" asp-controller="Users" asp-route-id="@user.UserId" onsubmit="return confirm('Ви впевнені що хочете видалити цього користувача?');">
+                                <button type="submit">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
-    <div class="modal" id="editUserModal">
-        <div class="modal-content">
-            <span class="close" onclick="closeEditModal()">&times;</span>
-            <h2>Edit User</h2>
-            <input id="editFirstNameInput" type="text" placeholder="First Name">
-            <input id="editCountryInput" type="text" placeholder="Country">
-            <input id="editPhoneInput" type="text" placeholder="Phone">
-            <input id="editEmailInput" type="text" placeholder="Email">
-            <input id="editIsApprovedInput" type="checkbox">
-            <input id="editRoleInput" type="text" placeholder="Role">
-            <button id="saveEditBtn" onclick="saveEditedUser()">Save</button>
-            <button id="deleteUserBtn" onclick="deleteUser()">Delete</button>
-        </div>
-    </div>
     <script>
-        let editingUserId = null;
-        function fillUserTable() 
+        //for logout btn
+        document.querySelector('.logoutBtn').addEventListener('click', function () 
         {
-            //idk
-        }
-        function openEditModal(userId, firstName, country, phone, email, isApproved, role) 
+            document.getElementById('logoutModal').style.display = 'flex';
+        });
+        document.getElementById('confirmLogout').addEventListener('click', function () 
         {
-            const modal = document.getElementById('editUserModal');
-            modal.style.display = 'block';
-            editingUserId = userId;
-            document.getElementById('editFirstNameInput').value = firstName;
-            document.getElementById('editCountryInput').value = country;
-            document.getElementById('editPhoneInput').value = phone;
-            document.getElementById('editEmailInput').value = email;
-            document.getElementById('editIsApprovedInput').checked = isApproved;
-            document.getElementById('editRoleInput').value = role;
-        }
-        function closeEditModal() 
+            window.location.href = '/home/Index';
+        });
+        document.getElementById('cancelLogout').addEventListener('click', function () 
         {
-            const modal = document.getElementById('editUserModal');
-            modal.style.display = 'none';
-            editingUserId = null;
-            document.getElementById('editFirstNameInput').value = '';
-            document.getElementById('editCountryInput').value = '';
-            document.getElementById('editPhoneInput').value = '';
-            document.getElementById('editEmailInput').value = '';
-            document.getElementById('editIsApprovedInput').checked = false;
-            document.getElementById('editRoleInput').value = '';
-        }
-        function editUser(userId, firstName, country, phone, email, isApproved, role) 
+            document.getElementById('logoutModal').style.display = 'none';
+        });
+        window.onclick = function (event) 
         {
-            window.location.href = `/Users/Edit/${userId}?firstName=${firstName}&country=${country}&phone=${phone}&email=${email}&isApproved=${isApproved}&role=${role}`;
-        }
-        function saveEditedUser() 
-        {
-            const firstNameInput = document.getElementById('editFirstNameInput');
-            const countryInput = document.getElementById('editCountryInput');
-            const phoneInput = document.getElementById('editPhoneInput');
-            const emailInput = document.getElementById('editEmailInput');
-            const isApprovedInput = document.getElementById('editIsApprovedInput');
-            const roleInput = document.getElementById('editRoleInput');
-            if (editingUserId !== null) 
+            var modal = document.getElementById('logoutModal');
+            if (event.target == modal) 
             {
-                closeEditModal();
+                modal.style.display = 'none';
             }
-        }
-        function deleteUser(userId) 
-        {
-            window.location.href = `/Users/Delete/${userId}`;
-        }
-        function closeDeleteModal() 
-        {
-            window.history.back();
         }
     </script>
 </body>
