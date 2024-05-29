@@ -10,8 +10,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Main-Page | CRM System</title>
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
+    <title>Admin Page | CRM System</title>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />   
+    <!-- <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> -->
 </head>
 <style>
 *
@@ -84,9 +85,17 @@ body
 }
 .modal button
 {
+    background: #D8D8D8;
     margin: 20px;
     padding: 1px 15px;
     font-size: 18px;
+    border: 1px solid #D8D8D8;
+    transition: background-color 0.3s, border 0.3s;
+}
+.modal button:hover
+{        
+    background: #B0B0B0;         
+    border: 1px solid #B0B0B0;
 }
 </style>
 <body>
@@ -95,11 +104,12 @@ body
         <button class="dashboardBtn">DASHBOARD</button>
         <button class="teamsBtn">TEAMS</button>
         <button class="employeesBtn">EMPLOYEES</button>
-        <button class="usersBtn">USERS</button>
+        <button onclick="showUsers()">USERS</button>
         <button class="requestsBtn">REQUESTS</button>
         <button class="profileBtn">PROFILE</button>
         <button class="logoutBtn">LOGOUT</button>
     </div>
+    <div id="content" class="content"></div>
     <!-- Log Out -->
     <div id="logoutModal" class="modal">
         <div class="modal-content">
@@ -109,30 +119,30 @@ body
         </div>
     </div>
     <script>
-        //for users btn
-        document.querySelector('.usersBtn').addEventListener('click', function () 
+        //for sideBar btns dynamic
+        function showUsers() 
         {
             fetch('@Url.Action("Index", "Users")')
                 .then(response => response.text())
                 .then(html => 
                 {
-                    document.getElementById('usersContainer').innerHTML = html;
+                    document.getElementById('content').innerHTML = html;
                 });
-        });
+        }
         //for logout btn
-        document.querySelector('.logoutBtn').addEventListener('click', function() 
+        document.querySelector('.logoutBtn').addEventListener('click', function () 
         {
             document.getElementById('logoutModal').style.display = 'flex';
         });
-        document.getElementById('confirmLogout').addEventListener('click', function() 
+        document.getElementById('confirmLogout').addEventListener('click', function () 
         {
             window.location.href = '/home/Index';
         });
-        document.getElementById('cancelLogout').addEventListener('click', function() 
+        document.getElementById('cancelLogout').addEventListener('click', function () 
         {
             document.getElementById('logoutModal').style.display = 'none';
         });
-        window.onclick = function(event) 
+        window.onclick = function (event) 
         {
             var modal = document.getElementById('logoutModal');
             if (event.target == modal) 
