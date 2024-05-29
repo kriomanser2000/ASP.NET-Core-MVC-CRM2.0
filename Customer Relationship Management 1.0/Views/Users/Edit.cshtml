@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model Customer_Relationship_Management_1._0.Models.User
+@{
+    ViewData["Title"] = "Edit User";
+}
+<h2>@ViewData["Title"]</h2>
+<form asp-action="Edit">
+    <input type="hidden" asp-for="UserId" />
+    <div>
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" />
+    </div>
+    <div>
+        <label asp-for="Country"></label>
+        <input asp-for="Country" />
+    </div>
+    <div>
+        <label asp-for="PhoneNumber"></label>
+        <input asp-for="PhoneNumber" />
+    </div>
+    <div>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" />
+    </div>
+    <div>
+        <label asp-for="IsApproved"></label>
+        <input asp-for="IsApproved" />
+    </div>
+    <div>
+        <label asp-for="Role"></label>
+        <input asp-for="Role" />
+    </div>
+    <button type="submit">Save</button>
+</form>
+<a asp-action="Index">Back to List</a>
