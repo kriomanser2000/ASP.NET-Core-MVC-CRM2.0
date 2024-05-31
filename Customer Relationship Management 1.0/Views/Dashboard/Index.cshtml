@@ -4,6 +4,12 @@
 @{
 }
 
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
 <!-- Page For Admin -->
 <!DOCTYPE html>
 <html lang="en">
@@ -99,11 +105,21 @@ body
     background: #B0B0B0;         
     border: 1px solid #B0B0B0;
 }
+.dashboardBtn:disabled 
+{
+    opacity: 0.5;
+    cursor: not-allowed; 
+    pointer-events: none;
+}
+.dashboardBtn
+{
+    background-color: #a7a7a7;
+}
 </style>
 <body>
     <!-- SIDEBAR -->
     <div class="sidebar">
-        <button id="dashboardBtn" class="dashboardBtn">DASHBOARD</button>
+        <button id="dashboardBtn" class="dashboardBtn" disabled>DASHBOARD</button>
         <button id="teamsBtn" class="teamsBtn">TEAMS</button>
         <button id="employeesBtn" class="employeesBtn">EMPLOYEES</button>
         <button id="usersBtn" class="usersBtn">USERS</button>
@@ -119,18 +135,17 @@ body
             <button id="cancelLogout">Ні</button>
         </div>
     </div>
+    <!-- DASHBOARD -->
+    <div class="DASHBOARD11">
+        <p>SOMETHING</p>
+    </div>
     <script>
-        //for dashboard btn
-        document.getElementById('dashboardBtn').addEventListener('click', function () 
-        {
-            window.location.href = '/Dashboard/Index';
-        });
         //for employees btn
         document.getElementById('employeesBtn').addEventListener('click', function () 
         {
             window.location.href = '/Employees/Index';
         });
-        //for teams btn
+        //for teams btn 
         document.getElementById('teamsBtn').addEventListener('click', function () 
         {
             window.location.href = '/Teams/Index';

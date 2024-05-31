@@ -4,24 +4,76 @@
 @{
 }
 
-<!-- Page For Admin -->
+
+@model IEnumerable<Customer_Relationship_Management_1._0.Models.Team>
+<!-- Dynamic-Page For Teams -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Page | CRM System</title>
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />   
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
     <!-- <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> -->
 </head>
 <style>
-*
+* 
 {
     font-family: Nunito;
 }
-body
+body 
 {
     font-family: Nunito;
+}
+.superTable
+{
+    position: absolute;
+    background: #e9e3e3;
+    color: black;
+    border: 5px solid #e9e3e3;
+    border-radius: 4px;
+    font-size: 22px;
+    left: 310px;
+    top: 20px;
+}
+.tableBtns1 a
+{
+    color: black;
+    background: #D8D8D8;
+    border: 5px solid #D8D8D8;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s, border 0.3s;
+    margin-right: 10px; 
+}
+.tableBtns1 a:hover
+{
+    background: #B0B0B0;         
+    border: 5px solid #B0B0B0;
+}
+.tableBtns1 button
+{
+    color: black;
+    background: #D8D8D8;
+    border: 5px solid #D8D8D8;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s, border 0.3s;
+    margin-right: 10px; 
+}
+.tableBtns1 button:hover
+{
+    background: #B0B0B0;         
+    border: 5px solid #B0B0B0;
+}
+.superTable th, .superTable td 
+{
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    text-align: left;
 }
 .sidebar 
 {
@@ -55,6 +107,10 @@ body
     transition: background-color 0.3s;
 }
 .sidebar button:hover 
+{
+    background-color: #a7a7a7;
+}
+.teamsBtn
 {
     background-color: #a7a7a7;
 }
@@ -99,12 +155,18 @@ body
     background: #B0B0B0;         
     border: 1px solid #B0B0B0;
 }
+.teamsBtn:disabled 
+{
+    opacity: 0.5;
+    cursor: not-allowed; 
+    pointer-events: none;
+}
 </style>
 <body>
     <!-- SIDEBAR -->
     <div class="sidebar">
         <button id="dashboardBtn" class="dashboardBtn">DASHBOARD</button>
-        <button id="teamsBtn" class="teamsBtn">TEAMS</button>
+        <button id="teamsBtn" class="teamsBtn" disabled>TEAMS</button>
         <button id="employeesBtn" class="employeesBtn">EMPLOYEES</button>
         <button id="usersBtn" class="usersBtn">USERS</button>
         <button id="profileBtn" class="profileBtn">PROFILE</button>
@@ -119,6 +181,33 @@ body
             <button id="cancelLogout">Ні</button>
         </div>
     </div>
+    <!-- User Table -->
+    <div class="superTable">
+        <table id="teamTable">
+            <thead>
+                <tr>
+                    <th>Назва команди</th>
+                    <th>Опис</th>
+                    <th>Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var team in Model)
+                {
+                    <tr>
+                        <td>@team.TeamName</td>
+                        <td>@team.Description</td>
+                        <td class="tableBtns1">
+                            <a href="@Url.Action("Edit", "Teams", new { id = team.TeamId })">Edit</a> |
+                            <form asp-action="Delete" asp-controller="Teams" asp-route-id="@team.TeamId" onsubmit="return confirm('Ви впевнені що хочете видалити цю команду?');">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
     <script>
         //for dashboard btn
         document.getElementById('dashboardBtn').addEventListener('click', function () 
@@ -130,12 +219,7 @@ body
         {
             window.location.href = '/Employees/Index';
         });
-        //for teams btn
-        document.getElementById('teamsBtn').addEventListener('click', function () 
-        {
-            window.location.href = '/Teams/Index';
-        });
-        //for users btn 
+        //for users btn
         document.getElementById('usersBtn').addEventListener('click', function () 
         {
             window.location.href = '/Users/Index';
