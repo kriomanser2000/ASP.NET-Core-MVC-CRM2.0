@@ -214,34 +214,60 @@ button:hover
         </div>
     </div>
     <script>
-        document.getElementById('loginButton').addEventListener('click', function()
+        document.getElementById('loginButton').addEventListener('click', function () 
         {
-            //test login for ADMIN
             var email = document.getElementById('email').value;
             var password = document.getElementById('password').value;
             if (email === 'admin@gmail.com' && password === 'admin123') 
             {
                 window.location.href = '/home/MainPage';
-            } 
-            else if (email === 'user@gmail.com' && password === 'user123') 
-            { 
-                window.location.href = '/home/UserMainPage';
+                return;
             }
-            else 
+            var loginData = 
             {
-                showCustomAlert();
-            }
+                Email: email,
+                Password: password
+            };
+            fetch('/Login/Login', 
+            {
+                method: 'POST',
+                headers: 
+                {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(loginData)
+            })
+                .then(response => response.json())
+                .then(data => 
+                {
+                    if (data.success) 
+                    {
+                        if (data.role === 'User') 
+                        {
+                            window.location.href = '/ForUser/1MainPage/Index';
+                        }
+                    } 
+                    else 
+                    {
+                        showCustomAlert();
+                    }
+                })
+                .catch(error => 
+                {
+                    console.error('Error:', error);
+                    showCustomAlert();
+                });
         });
         function showCustomAlert() 
         {
             var modal = document.getElementById("customAlert");
             var span = document.getElementsByClassName("close")[0];
             modal.style.display = "block";
-            span.onclick = function() 
+            span.onclick = function () 
             {
                 modal.style.display = "none";
             }
-            window.onclick = function(event) 
+            window.onclick = function (event) 
             {
                 if (event.target == modal) 
                 {
