@@ -3,3 +3,258 @@
 *@
 @{
 }
+
+@model IEnumerable<Customer_Relationship_Management_1._0.Models.User>
+<!-- Dynamic-Page For Users -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
+    <!-- <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> -->
+</head>
+<style>
+* 
+{
+    font-family: Nunito;
+}
+body 
+{
+    font-family: Nunito;
+}
+.superTable
+{
+    position: absolute;
+    background: #e9e3e3;
+    color: black;
+    border: 5px solid #e9e3e3;
+    border-radius: 4px;
+    font-size: 22px;
+    left: 310px;
+    top: 20px;
+}
+.tableBtns1 a
+{
+    color: black;
+    background: #D8D8D8;
+    border: 5px solid #D8D8D8;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s, border 0.3s;
+    margin-right: 10px; 
+}
+.tableBtns1 a:hover
+{
+    background: #B0B0B0;         
+    border: 5px solid #B0B0B0;
+}
+.tableBtns1 button
+{
+    color: black;
+    background: #D8D8D8;
+    border: 5px solid #D8D8D8;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s, border 0.3s;
+    margin-right: 10px; 
+}
+.tableBtns1 button:hover
+{
+    background: #B0B0B0;         
+    border: 5px solid #B0B0B0;
+}
+.superTable th, .superTable td 
+{
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+.sidebar 
+{
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #e9e3e3;
+    padding-top: 20px;
+    text-align: center;
+    box-shadow: 10px 0px 20px rgba(0, 0, 0, 0.5);
+}
+.sidebar button 
+{
+    padding: 15px 15px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    height: 80px;
+    text-align: left;
+    border: none;
+    background: none;
+    cursor: pointer;
+    background: #e9e3e3;
+    border-bottom: 2px solid rgb(114, 114, 114);
+    border-radius: 7px;
+    transition: background-color 0.3s;
+}
+.sidebar button:hover 
+{
+    background-color: #a7a7a7;
+}
+.usersBtn
+{
+    background-color: #a7a7a7;
+}
+.modal 
+{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    justify-content: center;
+    align-items: center;
+}
+.modal-content 
+{
+    background-color: white;
+    margin: auto;
+    padding: 40px;
+    border-radius: 3px;
+    width: 400px;
+    text-align: center;
+    font-size: 20px;
+}
+.modal button
+{
+    background: #D8D8D8;
+    margin: 20px;
+    padding: 1px 15px;
+    font-size: 18px;
+    border: 1px solid #D8D8D8;
+    border-radius: 3px;
+    transition: background-color 0.3s, border 0.3s;
+    cursor: pointer;
+}
+.modal button:hover
+{        
+    background: #B0B0B0;         
+    border: 1px solid #B0B0B0;
+}
+.usersBtn:disabled 
+{
+    opacity: 0.5;
+    cursor: not-allowed; 
+    pointer-events: none;
+}
+</style>
+<body>
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <button id="dashboardBtn" class="dashboardBtn">DASHBOARD</button>
+        <button id="teamsBtn" class="teamsBtn">TEAMS</button>
+        <button id="employeesBtn" class="employeesBtn">EMPLOYEES</button>
+        <button id="usersBtn" class="usersBtn" disabled>USERS</button>
+        <button id="profileBtn" class="profileBtn">PROFILE</button>
+        <button class="logoutBtn">LOGOUT</button>
+    </div>
+    <div id="content" class="content"></div>
+    <!-- Log Out -->
+    <div id="logoutModal" class="modal">
+        <div class="modal-content">
+            <p>Ви впевнені що хочете вийти з Акаунту?</p>
+            <button id="confirmLogout">Так</button>
+            <button id="cancelLogout">Ні</button>
+        </div>
+    </div>
+    <!-- User Table -->
+    <div class="superTable">
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th>Ім'я</th>
+                    <th>Країна</th>
+                    <th>Номер телефону</th>
+                    <th>Електронна пошта</th>
+                    <th>Схвалено</th>
+                    <th>Роль</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.FirstName</td>
+                        <td>@user.Country</td>
+                        <td>@user.PhoneNumber</td>
+                        <td>@user.Email</td>
+                        <td>@user.IsApproved</td>
+                        <td>@user.Role</td>          
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <script>
+        //for dashboard btn
+        document.getElementById('dashboardBtn').addEventListener('click', function () 
+        {
+            window.location.href = '/ForUserDashboard/Index';
+        });
+        //for employees btn
+        document.getElementById('employeesBtn').addEventListener('click', function () 
+        {
+            window.location.href = '/ForUserEmployees/Index';
+        });
+        //for teams btn
+        document.getElementById('teamsBtn').addEventListener('click', function () 
+        {
+            window.location.href = '/ForUserTeams/Index';
+        });
+        //for users btn
+        document.getElementById('usersBtn').addEventListener('click', function () 
+        {
+            window.location.href = '/ForUserUsers/Index';
+        });
+        //for profile btn
+        document.getElementById('profileBtn').addEventListener('click', function () 
+        {
+            window.location.href = '/ForUserProfile/Index';
+        });
+        //for logout btn
+        document.querySelector('.logoutBtn').addEventListener('click', function () 
+        {
+            document.getElementById('logoutModal').style.display = 'flex';
+        });
+        document.getElementById('confirmLogout').addEventListener('click', function () 
+        {
+            window.location.href = '/home/Index';
+        });
+        document.getElementById('cancelLogout').addEventListener('click', function () 
+        {
+            document.getElementById('logoutModal').style.display = 'none';
+        });
+        window.onclick = function (event) 
+        {
+            var modal = document.getElementById('logoutModal');
+            if (event.target == modal) 
+            {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
