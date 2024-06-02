@@ -4,13 +4,13 @@
 @{
 }
 
+
 <!-- Page For Admin -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Page | CRM System</title>
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />   
     <!-- <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> -->
 </head>
@@ -109,6 +109,45 @@ body
 {
     background-color: #a7a7a7;
 }
+.DASHBOARD11
+{
+    position: absolute;
+    color: black;
+    background: #e9e3e3;
+    border-radius: 4px;
+    width: 1050px;
+    height: 350px;
+    left: 310px;
+    top: 20px;
+    padding: 40px;
+    font-size: 18px;
+}
+.DASHBOARD22
+{
+    position: absolute;
+    color: black;
+    background: #e9e3e3;
+    border-radius: 4px;
+    width: 1050px;
+    height: 350px;
+    left: 310px;
+    top: 470px;
+    padding: 40px;
+    font-size: 18px;
+}
+.lastActivityRegistr
+{
+    color: black;
+    background: #e9e3e3;
+    position: absolute;
+    width: 350px;
+    height: 800px;
+    left: 1470px;
+    top: 20px;
+    border-radius: 4px;
+    padding: 40px;
+    font-size: 18px;
+}
 </style>
 <body>
     <!-- SIDEBAR -->
@@ -121,6 +160,9 @@ body
         <button class="logoutBtn">LOGOUT</button>
     </div>
     <div id="content" class="content"></div>
+    <div class="lastActivityRegistr">
+        <p>for reg activity</p>
+    </div>
     <!-- Log Out -->
     <div id="logoutModal" class="modal">
         <div class="modal-content">
@@ -132,6 +174,9 @@ body
     <!-- DASHBOARD -->
     <div class="DASHBOARD11">
         <p>SOMETHING</p>
+    </div>
+    <div class="DASHBOARD22">
+        <p>SOMETHING2</p>
     </div>
     <script>
         //for employees btn
@@ -148,6 +193,11 @@ body
         document.getElementById('usersBtn').addEventListener('click', function () 
         {
             window.location.href = '/Users/Index';
+        });
+        //for profile btn 
+        document.getElementById('profileBtn').addEventListener('click', function () 
+        {
+            window.location.href = '/Profile/Index';
         });
         //for logout btn
         document.querySelector('.logoutBtn').addEventListener('click', function () 
