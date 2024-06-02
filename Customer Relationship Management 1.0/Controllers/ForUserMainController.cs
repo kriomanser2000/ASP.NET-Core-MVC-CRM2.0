@@ -2,7 +2,7 @@
 
 namespace Customer_Relationship_Management_1._0.Controllers
 {
-    public class _1MainPageController : Controller
+    public class ForUserMainController : Controller
     {
         public IActionResult Index()
         {

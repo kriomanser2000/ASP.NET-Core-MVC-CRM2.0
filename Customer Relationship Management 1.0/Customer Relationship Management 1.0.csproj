@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\ForUser\1Employees\" />
-    <Folder Include="Views\ForUser\1Profile\" />
-    <Folder Include="Views\ForUser\1Teams\" />
-    <Folder Include="Views\ForUser\1Users\" />
     <Folder Include="Views\Profile\" />
   </ItemGroup>
 
