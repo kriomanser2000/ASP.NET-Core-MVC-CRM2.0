@@ -16,7 +16,6 @@ namespace Customer_Relationship_Management_1._0.Controllers
             _context = context;
         }
 
-
         public async Task<IActionResult> Index()
         {
             var userId = GetCurrentUserId();
