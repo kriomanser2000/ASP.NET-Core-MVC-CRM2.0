@@ -161,6 +161,31 @@ body
     cursor: not-allowed; 
     pointer-events: none;
 }
+.createBtnTeam
+{
+    font-size: 20px;
+    position: absolute;
+    color: black;
+    left: 1330px;
+    top: 20px;
+    width: 245px;
+    height: 30px;
+    background: #D8D8D8;
+    border: 2px solid #949494;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s, border 0.3s, height 0.3s;
+    text-align: center;
+    justify-content: center;
+}
+.createBtnTeam:hover
+{
+    background: #B0B0B0;         
+    border: 5px solid #B0B0B0;
+    height: 50px;
+}
 </style>
 <body>
     <!-- SIDEBAR -->
@@ -181,7 +206,7 @@ body
             <button id="cancelLogout">Ні</button>
         </div>
     </div>
-    <!-- User Table -->
+    !-- User Table -->
     <div class="superTable">
         <table id="teamTable">
             <thead>
@@ -207,6 +232,9 @@ body
                 }
             </tbody>
         </table>
+    </div>
+    <div class="createTeam">
+        <a class="createBtnTeam" href="@Url.Action("Create", "Teams")">Створити Нову Команду</a>
     </div>
     <script>
         //for dashboard btn

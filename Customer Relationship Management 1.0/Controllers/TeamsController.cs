@@ -1,7 +1,6 @@
 ﻿using Customer_Relationship_Management_1._0.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Customer_Relationship_Management_1._0.Controllers
@@ -15,16 +14,41 @@ namespace Customer_Relationship_Management_1._0.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        // Метод для відображення сторінки створення команди
+        public IActionResult Create()
         {
-            var teams = _context.Teams.ToList();
+            return View();
+        }
+
+        // Метод для обробки POST-запиту створення команди
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Team team)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(team);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(team);
+        }
+
+        // Метод для відображення списку команд
+        public async Task<IActionResult> Index()
+        {
+            var teams = await _context.Teams.ToListAsync();
             return View(teams);
         }
 
-        [HttpGet]
-        [Route("Teams/Edit/{id}")]
-        public async Task<IActionResult> Edit(int id)
+        // Метод для відображення сторінки редагування команди
+        public async Task<IActionResult> Edit(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
             var team = await _context.Teams.FindAsync(id);
             if (team == null)
             {
@@ -33,14 +57,16 @@ namespace Customer_Relationship_Management_1._0.Controllers
             return View(team);
         }
 
+        // Метод для обробки POST-запиту редагування команди
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TeamId,TeamName,Description")] Team team)
+        public async Task<IActionResult> Edit(int id, Team team)
         {
             if (id != team.TeamId)
             {
                 return NotFound();
             }
+
             if (ModelState.IsValid)
             {
                 try
@@ -64,18 +90,7 @@ namespace Customer_Relationship_Management_1._0.Controllers
             return View(team);
         }
 
-        [HttpGet]
-        [Route("Teams/Delete/{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var team = await _context.Teams.FindAsync(id);
-            if (team == null)
-            {
-                return NotFound();
-            }
-            return View(team);
-        }
-
+        // Метод для видалення команди
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
