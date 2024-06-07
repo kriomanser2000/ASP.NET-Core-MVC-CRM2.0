@@ -360,12 +360,18 @@ body
     </div>
     <div id="content" class="content"></div>
     <!-- Profile window User -->
+    <div id="content" class="content"></div>
+    <!-- Profile window User -->
     <div class="profileAdminJS">
         <h1>User PROFILE</h1>
         <div class="InfoTitle">
-            <p>Name:</p>
-            <p>Email:</p>
-            <p>Password:</p>
+            <p>Name: @Model.FirstName</p>
+            <p>Country: @Model.Country</p>
+            <p>Phone Number: @Model.PhoneNumber</p>
+            <p>Email: @Model.Email</p>
+            <p>Password: ********</p>
+            <p>Approved: @Model.IsApproved</p>
+            <p>Role: @Model.Role</p>
         </div>
     </div>
     <!-- Log Out -->
