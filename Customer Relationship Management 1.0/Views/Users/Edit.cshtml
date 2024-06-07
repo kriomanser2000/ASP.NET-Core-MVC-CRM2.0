@@ -1,45 +1,134 @@
-﻿@model Customer_Relationship_Management_1._0.Models.User
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
 
-<h1>Edit User</h1>
-<form asp-action="Edit" asp-controller="Users" method="post">
-    <input type="hidden" asp-for="UserId" />
-    <div class="form-group">
-        <label asp-for="FirstName"></label>
-        <input asp-for="FirstName" class="form-control" autocomplete="off" />
-        <span asp-validation-for="FirstName" class="text-danger"></span>
+@model Customer_Relationship_Management_1._0.Models.User
+
+<!-- Page For Edit User ADMIN -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />   
+    <!-- <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> -->
+</head>
+<style>
+* 
+{
+    font-family: Nunito;
+}
+body 
+{      
+    font-family: Nunito;        
+    background-image: url('/images/BGpurpleATLAS.png');        
+    background-size: cover;       
+    background-repeat: no-repeat;       
+    background-position: center center;
+}
+input 
+{        
+    width: 20%;
+    height: 40px;
+    background: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    color: black;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+label 
+{           
+    position: absolute;           
+    top: 50%;           
+    left: 5px;            
+    transform: translateY(-50%);            
+    color: rgba(63, 63, 71, 1);            
+    font-size: 1rem;            
+    pointer-events: none;            
+    transition: all 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+input:focus ~ label, input:not(:placeholder-shown) ~ label
+{           
+    opacity: 0;            
+    visibility: hidden;
+}
+.text-danger 
+{
+    color: red;
+}
+button 
+{      
+    width: 50%;        
+    height: 40px;        
+    border-radius: 40px;        
+    background-color: rgb(255, 255, 255);               
+    border: 1px solid rgb(224, 224, 224);                
+    outline: none;        
+    cursor: pointer;        
+    font-size: 1rem;        
+    font-weight: 600;       
+    bottom: 60px;       
+    left: 25%;        
+    position: absolute;       
+    transition: all 0.4s ease;
+}
+button:hover 
+{          
+    background-color: rgb(202, 202, 202);
+}
+.editInputs11
+{
+    padding: 60px 120px;
+}
+h1
+{
+    margin-left: 130px;
+    margin-top: 30px;
+}
+</style>
+<body>
+    <h1>Редагувати обраного корситувача:</h1>
+    <!-- editNAME -->
+    <div class="editInputs11">
+        <form asp-action="Edit" asp-controller="Users" method="post">
+            <input type="hidden" asp-for="UserId" />
+                <label asp-for="FirstName"></label>
+                <input asp-for="FirstName" autocomplete="off" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+        <!-- editCOUNTRY -->
+            <label asp-for="Country"></label>
+            <input asp-for="Country" autocomplete="off" />
+            <span asp-validation-for="Country" class="text-danger"></span>
+        <!-- editNUMBER -->
+            <label asp-for="PhoneNumber"></label>
+            <input asp-for="PhoneNumber" autocomplete="off" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        <!-- editEMAIL -->
+            <label asp-for="Email"></label>
+            <input asp-for="Email" autocomplete="off" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        <!-- editPASSWORD -->
+            <label asp-for="Password"></label>
+            <input asp-for="Password" type="password" autocomplete="off" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        <!-- editAPPROVED? -->
+            <label asp-for="IsApproved"></label>
+            <input asp-for="IsApproved" autocomplete="off" />
+            <span asp-validation-for="IsApproved" class="text-danger"></span>
+        <!-- editROLE -->
+            <label asp-for="Role"></label>
+            <input asp-for="Role" autocomplete="off" />
+            <span asp-validation-for="Role" class="text-danger"></span>
+        <button type="submit">Зберегти</button>
+    </form>
     </div>
-    <div class="form-group">
-        <label asp-for="Country"></label>
-        <input asp-for="Country" class="form-control" autocomplete="off" />
-        <span asp-validation-for="Country" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="PhoneNumber"></label>
-        <input asp-for="PhoneNumber" class="form-control" autocomplete="off" />
-        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Email"></label>
-        <input asp-for="Email" class="form-control" autocomplete="off" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Password"></label>
-        <input asp-for="Password" class="form-control" type="password" autocomplete="off" />
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="IsApproved"></label>
-        <input asp-for="IsApproved" class="form-control" autocomplete="off" />
-        <span asp-validation-for="IsApproved" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Role"></label>
-        <input asp-for="Role" class="form-control" autocomplete="off" />
-        <span asp-validation-for="Role" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-primary">Save</button>
-</form>
+<script></script>
+</body>
+</html>
 @section Scripts 
 {
     @{
