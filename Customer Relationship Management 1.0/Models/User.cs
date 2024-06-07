@@ -19,6 +19,7 @@ namespace Customer_Relationship_Management_1._0.Models
         public bool IsApproved { get; set; }
         [Required(ErrorMessage = "Роль є обов'язковою")]
         public string Role { get; set; }
+        public int TeamId { get; set; }
     }
 
     /*

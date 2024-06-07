@@ -18,7 +18,7 @@ namespace Customer_Relationship_Management_1._0.Controllers
             _context = context;
             _logger = logger;
         }
-
+        
         [Route("")]
         [Route("Index")]
         public IActionResult Index()

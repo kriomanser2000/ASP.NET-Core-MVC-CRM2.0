@@ -105,5 +105,23 @@ namespace Customer_Relationship_Management_1._0.Controllers
         {
             return _context.Teams.Any(e => e.TeamId == id);
         }
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var team = await _context.Teams
+                .Include(t => t.Users)  // Include the related users
+                .FirstOrDefaultAsync(m => m.TeamId == id);
+            if (team == null)
+            {
+                return NotFound();
+            }
+
+            return View(team);
+        }
+
     }
 }
